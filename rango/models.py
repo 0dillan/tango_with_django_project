@@ -3,6 +3,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=128, unique=True)
 
+    # Makes the name of the Category model plural when used in a plural context
     class Meta:
         verbose_name_plural = "Categories"
 

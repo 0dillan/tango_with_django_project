@@ -22,7 +22,7 @@ def populate():
 
     other_pages = [
         {"title": "Bottle", "url": "http://bottlepy.org/docs/dev/", "views": 123},
-        {"title": "Flask", "url": "http://flask.pocoo.org/", "views": 20}
+        {"title": "Flask", "url": "http://flask.pocoo.org", "views": 20}
     ]
 
     # Example Categories

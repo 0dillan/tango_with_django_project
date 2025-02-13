@@ -27,25 +27,27 @@ def populate():
 
     # Example Categories
     categories = {
-        "Python": {"pages": python_pages},
-        "Django": {"pages": django_pages},
-        "Other Frameworks": {"pages": other_pages}
+        "Python": {"pages": python_pages, "views": 128, "likes": 64},
+        "Django": {"pages": django_pages, "views": 64, "likes": 32},
+        "Other Frameworks": {"pages": other_pages, "views": 32, "likes": 16}
     }
 
     # Creates every category object and associates all the relevant pages to it
     for category_name, category_data in categories.items():
-        category = add_category(category_name)
+        category = add_category(category_name, category_data["views"], category_data["likes"])
 
         for page in category_data["pages"]:
-            add_page(category, page["title"], page["url"])
+            add_page(category, page["title"], page["url"], page["views"] if "views" in page else 0)
 
     # Prints every page in every category
     for category in Category.objects.all():
         for page in Page.objects.filter(category=category):
             print(f"- {category}: {page}")
 
-def add_category(name):
+def add_category(name, views=0, likes=0):
     category = Category.objects.get_or_create(name=name)[0]
+    category.views = views
+    category.likes = likes
     category.save()
 
     return category
